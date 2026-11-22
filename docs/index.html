@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#07111d" />
+  <title>TankSun — Aquarium Light Controller</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div class="app-shell">
+    <!-- Top Header -->
+    <header class="topbar">
+      <div class="brand">
+        <img src="./icon.svg" alt="TankSun" />
+        <div>
+          <h1>TankSun</h1>
+          <div id="headerSub" class="sub">OceanTech BLE Controller</div>
+        </div>
+      </div>
+      <button id="connPill" class="conn-pill" type="button">
+        <span class="dot"></span>
+        <span id="connLabel">Connect</span>
+      </button>
+    </header>
+
+    <!-- Connect Hero (shown when not connected and not in offline draft mode) -->
+    <section id="connectHero" class="card connect-hero">
+      <img src="./icon.svg" alt="" width="64" height="64" style="border-radius:16px" />
+      <h2>Connect to your Tank Light</h2>
+      <p>
+        Make sure the OceanTech app is closed on your phone, then tap Connect and pick
+        <strong>XPG-GAgent</strong>.
+      </p>
+      <div class="btn-row" style="justify-content:center; margin-bottom:10px;">
+        <button id="btnConnect" class="btn btn-primary" type="button">Connect via Bluetooth</button>
+      </div>
+      <div class="btn-row" style="justify-content:center;">
+        <button id="btnConnectAll" class="btn btn-sm" type="button">Scan All BLE Devices</button>
+        <button id="btnOfflineEdit" class="btn btn-sm" type="button">Preview UI Offline</button>
+      </div>
+      <p id="bleSupportNote" class="muted" style="margin-top:14px; margin-bottom:0;"></p>
+    </section>
+
+    <!-- Main Controller Area -->
+    <main id="mainApp" class="hidden">
+      <!-- Power + Auto/Manual Bar -->
+      <section class="card">
+        <div class="status-bar">
+          <button id="btnPower" class="power-btn" type="button" title="Toggle Power" aria-label="Toggle Power">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <path d="M12 2v10" />
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+            </svg>
+          </button>
+          <div>
+            <div class="mode-switch">
+              <button id="btnModeAuto" class="mode-btn" type="button">Auto Schedule</button>
+              <button id="btnModeManual" class="mode-btn" type="button">Manual</button>
+            </div>
+            <div id="statusLine" class="muted" style="margin-top:6px; display:flex; justify-content:space-between;">
+              <span id="statusText">Ready</span>
+              <span id="clockText"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 1: SCHEDULE -->
+      <section id="tabSchedule">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">24-Hour Light Curve</h2>
+            <div class="btn-row">
+              <button id="btnSyncClock" class="btn btn-sm" type="button">Sync Clock</button>
+              <button id="btnRefresh" class="btn btn-sm" type="button">Read Light</button>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <svg id="scheduleChart" viewBox="0 0 460 190" aria-label="24-hour lighting curve"></svg>
+          </div>
+
+          <!-- Live Time-of-Day Scrubber -->
+          <div class="scrubber-box">
+            <div class="scrubber-top">
+              <span>Live Time Preview: <strong id="scrubTimeLabel">Off</strong></span>
+              <button id="btnStopScrub" class="btn btn-sm hidden" type="button">Exit Preview</button>
+            </div>
+            <input id="scrubSlider" type="range" min="0" max="1439" step="5" value="720" />
+          </div>
+
+          <!-- Weekday Repeat -->
+          <div class="muted" style="margin-bottom:6px;">Active Days</div>
+          <div id="dayPills" class="day-pills"></div>
+
+          <!-- Quick Templates -->
+          <div class="btn-row" style="margin-bottom:4px;">
+            <select id="templateSelect" style="flex:1; font-size:0.82rem;">
+              <option value="">Load a schedule template…</option>
+              <option value="freshwater8">Planted Freshwater (8h, 10:00 AM–6:00 PM)</option>
+              <option value="daylight10">Gentle Dawn-to-Dusk (10h, 8:30 AM–6:30 PM)</option>
+              <option value="siesta">Split / Siesta Photoperiod (2 peaks)</option>
+              <option value="evening">Afternoon + Evening Viewing (12:00 PM–9:30 PM)</option>
+            </select>
+            <button id="btnApplyTemplate" class="btn btn-sm" type="button">Apply</button>
+          </div>
+        </div>
+
+        <!-- Selected Node Editor -->
+        <div id="nodeEditorCard" class="node-editor hidden">
+          <div class="card-header" style="margin-bottom:10px;">
+            <h3 id="nodeEditorTitle" class="card-title" style="color:var(--accent-2);">Edit Node</h3>
+            <div class="btn-row">
+              <button id="btnPreviewNode" class="btn btn-sm" type="button">Preview</button>
+              <button id="btnDeleteNode" class="btn btn-sm btn-danger" type="button">Delete</button>
+            </div>
+          </div>
+          <div class="time-input-row">
+            <label for="nodeTimeInput" class="muted" style="font-size:0.85rem;">Node Time</label>
+            <input id="nodeTimeInput" type="time" />
+          </div>
+          <div id="nodeSliders"></div>
+          <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
+            <div class="channel-meta">
+              <span class="channel-name">Master Brightness</span>
+              <span id="nodeMasterVal" class="channel-val">0%</span>
+            </div>
+            <input id="nodeMasterSlider" type="range" min="0" max="100" value="0" />
+          </div>
+        </div>
+
+        <!-- Node List -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Schedule Nodes (<span id="nodeCount">0</span>/12)</h2>
+            <button id="btnAddNode" class="btn btn-sm" type="button">+ Add Node</button>
+          </div>
+          <div id="nodeList" class="node-list"></div>
+          <button id="btnSaveSchedule" class="btn btn-amber btn-block" type="button">
+            Save Schedule &amp; Activate Auto Mode
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 2: MANUAL -->
+      <section id="tabManual" class="hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Live Spectrum &amp; Channels</h2>
+            <div class="btn-row">
+              <button id="btnAllOff" class="btn btn-sm" type="button">0%</button>
+              <button id="btnAllFull" class="btn btn-sm" type="button">100%</button>
+            </div>
+          </div>
+          <div class="chart-wrap" style="margin-bottom:14px;">
+            <svg id="spectrumChart" viewBox="0 0 460 145" aria-label="Live LED spectrum curve"></svg>
+          </div>
+          <div id="manualSliders"></div>
+
+          <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
+            <div class="channel-meta">
+              <span class="channel-name">Master Brightness</span>
+              <span id="masterVal" class="channel-val">100%</span>
+            </div>
+            <input id="masterSlider" type="range" min="0" max="100" value="100" />
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Saved Onboard Modes (1–6)</h2>
+            <button id="btnSaveManualSlot" class="btn btn-sm btn-primary" type="button">Save to Selected</button>
+          </div>
+          <div id="presetGrid" class="preset-grid"></div>
+          <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+            <input id="presetNameInput" type="text" placeholder="Rename selected preset…" style="flex:1; font-size:0.82rem;" />
+            <button id="btnRenamePreset" class="btn btn-sm" type="button">Rename</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: SETTINGS -->
+      <section id="tabSettings" class="hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Channel Labels &amp; Test Flash</h2>
+          </div>
+          <p class="muted" style="margin-top:0;">
+            Tap <strong>Flash</strong> to light a single channel at 35% for 2 seconds, then set its name and color.
+          </p>
+          <div id="channelConfigList"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Schedule Clock Format</h2>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div style="font-size:0.86rem; font-weight:600;">Timestamp Timezone</div>
+              <div class="muted">If Auto schedule triggers shifted by your timezone, switch this and tap Sync Clock.</div>
+            </div>
+            <select id="clockModeSelect">
+              <option value="beijing_local">Auto (MCU UTC+8 compensated)</option>
+              <option value="local">Raw Local Time</option>
+              <option value="utc">UTC Epoch</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <div style="font-size:0.86rem;">Light Clock Readout</div>
+            <div id="deviceTimestampVal" class="muted">—</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Backup &amp; Restore</h2>
+          </div>
+          <div class="btn-row">
+            <button id="btnExportJson" class="btn btn-sm" type="button">Copy JSON Backup</button>
+            <button id="btnImportJson" class="btn btn-sm" type="button">Import JSON</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">BLE Diagnostics</h2>
+            <button id="btnClearLog" class="btn btn-sm" type="button">Clear</button>
+          </div>
+          <div id="bleLog" class="log-box">Ready.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Bottom Tab Navigation -->
+  <nav id="bottomNav" class="bottom-nav hidden" aria-label="Primary">
+    <div class="bottom-nav-inner">
+      <button class="nav-btn active" data-tab="schedule" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+        </svg>
+        Schedule
+      </button>
+      <button class="nav-btn" data-tab="manual" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>
+        </svg>
+        Manual
+      </button>
+      <button class="nav-btn" data-tab="settings" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        Settings
+      </button>
+    </div>
+  </nav>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[project]
+name = "tanksun"
+version = "0.1.0"
+description = "Personal BLE controller and scheduler for Ocean Tech aquarium lights"
+requires-python = ">=3.11"
+dependencies = [
+    "bleak>=0.22.3",
+]

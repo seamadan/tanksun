@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Local hardware captures & one-off diagnostic scripts (contain local device MAC)
+captures/gatt_profile.json
+tools/ble_probe.py
+tools/ble_probe_varlen.py
+tools/ble_login_query.py
+tools/read_status.py
+tools/channel_test.py
+tools/debug_auto.py
+tools/test_clock_tz.py
+tools/verify_auto_exact.py

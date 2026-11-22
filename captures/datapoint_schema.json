@@ -1,0 +1,1259 @@
+{
+  "name": "ASTRA_freshwate",
+  "packetVersion": "0x00000004",
+  "protocolType": "var_len",
+  "product_key": "6cc581e630ba4e2297484a36967df36c",
+  "entities": [
+    {
+      "display_name": "机智云开发套件",
+      "attrs": [
+        {
+          "display_name": "onOff",
+          "name": "onOff",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 0,
+          "desc": "开关设备，0=开，1=关"
+        },
+        {
+          "display_name": "群控开关",
+          "name": "mesh",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 1,
+          "desc": "群控开关，0=开启，1=关闭"
+        },
+        {
+          "display_name": "remark4",
+          "name": "remark4",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 2,
+          "desc": "预留bool型"
+        },
+        {
+          "display_name": "拥有几路颜色",
+          "name": "haveColour",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 10,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 3,
+          "desc": "设备拥有几路颜色，App选择对应类型的时候会同时下发几路颜色。最多8路颜色"
+        },
+        {
+          "display_name": "节点数量",
+          "name": "nodeNum",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 12,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 4,
+          "desc": "节点数量，最多12个。节点的头和尾分别为日出与日落，颜色百分比都为0"
+        },
+        {
+          "display_name": "模式切换",
+          "name": "mode",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 1,
+            "max": 9,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 5,
+          "desc": "模式，1=自动模式，2=手动模式1（用户自定义模式并设定颜色百分比）；3=手动模式2；4=手动模式3；5==手动模式4；6=手动模式5；7==手动模式6"
+        },
+        {
+          "display_name": "设备类型",
+          "name": "deviceType",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 1,
+            "max": 99,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 6,
+          "desc": "设备类型。1=淡水大灯；2=海水大灯；3=海水小灯；4=淡水小灯；5=白光小灯；6=塑料海水灯；7=塑料淡水灯，8=大功率灯"
+        },
+        {
+          "display_name": "remark1",
+          "name": "remark1",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 7,
+          "desc": "备用数据点1"
+        },
+        {
+          "display_name": "remark2",
+          "name": "remark2",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 8,
+          "desc": "备用数据点2"
+        },
+        {
+          "display_name": "remark5",
+          "name": "remark5",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 9,
+          "desc": ""
+        },
+        {
+          "display_name": "remark6",
+          "name": "remark6",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 10,
+          "desc": ""
+        },
+        {
+          "display_name": "节点1执行时间",
+          "name": "nodeTime1",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 11,
+          "desc": "节点1的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点2执行时间",
+          "name": "nodeTime2",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 12,
+          "desc": "节点2的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点3执行时间",
+          "name": "nodeTime3",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 13,
+          "desc": "节点3的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点4执行时间",
+          "name": "nodeTime4",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 14,
+          "desc": "节点4的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点5执行时间",
+          "name": "nodeTime5",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 15,
+          "desc": "节点5的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点6执行时间",
+          "name": "nodeTime6",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 16,
+          "desc": "节点6的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点7执行时间",
+          "name": "nodeTime7",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 17,
+          "desc": "节点7的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点8执行时间",
+          "name": "nodeTime8",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 18,
+          "desc": "节点8的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点9执行时间",
+          "name": "nodeTime9",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 19,
+          "desc": "节点9的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点10执行时间",
+          "name": "nodeTime10",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 20,
+          "desc": "节点10的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点11执行时间",
+          "name": "nodeTime11",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 21,
+          "desc": "节点11的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "节点12执行时间",
+          "name": "nodeTime12",
+          "data_type": "uint16",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 1440,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 22,
+          "desc": "节点12的时间，时间精确到分钟，一天共1440分钟，选择5点29分则处理为329"
+        },
+        {
+          "display_name": "时间戳",
+          "name": "timestamp",
+          "data_type": "uint32",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 4,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 4294967295,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 23,
+          "desc": "时间校准，下发时间戳给设备"
+        },
+        {
+          "display_name": "1路颜色",
+          "name": "colour1",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 24,
+          "desc": "自动模式：1-12字节分别对应12个节点的1路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应6个手动模式下1路颜色的百分比"
+        },
+        {
+          "display_name": "2路颜色",
+          "name": "colour2",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 25,
+          "desc": "自动模式：1-12字节分别对应12个节点的2路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应6个手动模式下2路颜色的百分比"
+        },
+        {
+          "display_name": "3路颜色",
+          "name": "colour3",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 26,
+          "desc": "自动模式：12个字节分别对应12个节点的3路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应6个手动模式下3路颜色的百分比"
+        },
+        {
+          "display_name": "4路颜色",
+          "name": "colour4",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 27,
+          "desc": "自动模式：12个字节分别对应12个节点的4路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应6个手动模式下4路颜色的百分比"
+        },
+        {
+          "display_name": "5路颜色",
+          "name": "colour5",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 28,
+          "desc": "自动模式：1-12字节分别对应12个节点的5路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应6个手动模式下5路颜色的百分比"
+        },
+        {
+          "display_name": "6路颜色",
+          "name": "colour6",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 29,
+          "desc": "自动模式：1-12字节分别对应12个节点的6路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应6个手动模式下6路颜色的百分比"
+        },
+        {
+          "display_name": "7路颜色",
+          "name": "colour7",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 30,
+          "desc": "自动模式：12个字节分别对应12个节点的7路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应7个手动模式下3路颜色的百分比"
+        },
+        {
+          "display_name": "8路颜色",
+          "name": "colour8",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 18,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 31,
+          "desc": "自动模式：12个字节分别对应12个节点的8路颜色百分比，百分比为0-100%。手动模式：13-18字节分别对应8个手动模式下4路颜色的百分比"
+        },
+        {
+          "display_name": "周期设置",
+          "name": "cycleDate",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 7,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 32,
+          "desc": "定时设置一周内星期几自动循环，字节1代表星期一，字节7代表星期天；每个字节的0代表不执行，1代表执行。"
+        },
+        {
+          "display_name": "remark3",
+          "name": "remark3",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 10,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 33,
+          "desc": "预览模式使用。第一个字节为是否开启预览，0=不开启，1=开启；第二个字节为有几路颜色；第3-10字节为每路颜色的百分比。数据有App端发送给设备"
+        }
+      ],
+      "name": "entity0",
+      "id": 0
+    }
+  ],
+  "ui": {
+    "object": {
+      "version": 4,
+      "showEditButton": false
+    },
+    "sections": [
+      {
+        "elements": [
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.onOff"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.onOff",
+            "title": "onOff"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.mesh"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.mesh",
+            "title": "群控开关"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.remark4"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.remark4",
+            "title": "remark4"
+          },
+          {
+            "title": "拥有几路颜色",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.haveColour"
+              ],
+              "uint_spec": {
+                "max": 10,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.haveColour",
+            "maximumValue": 10,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点数量",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeNum"
+              ],
+              "uint_spec": {
+                "max": 12,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeNum",
+            "maximumValue": 12,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "模式切换",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.mode"
+              ],
+              "uint_spec": {
+                "max": 10,
+                "step": 1,
+                "min": 1
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.mode",
+            "maximumValue": 10,
+            "minimumValue": 1,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "设备类型",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.deviceType"
+              ],
+              "uint_spec": {
+                "max": 100,
+                "step": 1,
+                "min": 1
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.deviceType",
+            "maximumValue": 100,
+            "minimumValue": 1,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "remark1",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.remark1"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.remark1",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "remark2",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.remark2"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.remark2",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "remark5",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.remark5"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.remark5",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "remark6",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.remark6"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.remark6",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点1执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime1"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime1",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点2执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime2"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime2",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点3执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime3"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime3",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点4执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime4"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime4",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点5执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime5"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime5",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点6执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime6"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime6",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点7执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime7"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime7",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点8执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime8"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime8",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点9执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime9"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime9",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点10执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime10"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime10",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点11执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime11"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime11",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "节点12执行时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.nodeTime12"
+              ],
+              "uint_spec": {
+                "max": 1440,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.nodeTime12",
+            "maximumValue": 1440,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "时间戳",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.timestamp"
+              ],
+              "uint_spec": {
+                "max": 4294967295,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.timestamp",
+            "maximumValue": 4294967295,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "1路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour1"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour1",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "2路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour2"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour2",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "3路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour3"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour3",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "4路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour4"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour4",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "5路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour5"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour5",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "6路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour6"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour6",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "7路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour7"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour7",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "8路颜色",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.colour8"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.colour8",
+            "maxLength": 36,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "周期设置",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.cycleDate"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.cycleDate",
+            "maxLength": 14,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "remark3",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.remark3"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.remark3",
+            "maxLength": 20,
+            "type": "QMultilineElement"
+          }
+        ]
+      }
+    ]
+  }
+}

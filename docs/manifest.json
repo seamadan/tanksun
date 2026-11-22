@@ -1,0 +1,16 @@
+{
+  "name": "TankSun — Aquarium Light Controller",
+  "short_name": "TankSun",
+  "description": "Personal Web Bluetooth controller and 24-hour scheduler for OceanTech / Erreloda aquarium LED lights.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07111d",
+  "theme_color": "#07111d",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
